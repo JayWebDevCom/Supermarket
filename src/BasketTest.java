@@ -28,4 +28,18 @@ public class BasketTest {
         assertEquals(4, basket.getItems().size());
     }
 
+    @Test
+    public void addSaving(){
+        Saving saving = new Saving("test saving", 2.00);
+        basket.addSaving(saving);
+        assertTrue(basket.getSavingsItems().contains(saving));
+    }
+
+    @Test
+    public void getSaving(){
+        Saving saving = new Saving("test saving", 2.00);
+        basket.addSaving(saving);
+        assertEquals(1, basket.getSavingsItems().size());
+    }
+
 }
