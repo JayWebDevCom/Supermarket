@@ -23,6 +23,7 @@ public class BasketTest {
     public void basketAddSubsequent(){
         Product product = new Product("Peas", 0.99);
         Basket basket = new Basket(product, product, product);
+        assertEquals(3, basket.getItems().size());
         basket.add(product);
         assertEquals(4, basket.getItems().size());
     }
