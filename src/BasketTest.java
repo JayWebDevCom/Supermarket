@@ -19,4 +19,12 @@ public class BasketTest {
         assertEquals(1, basket.getItems().size());
     }
 
+    @Test
+    public void basketAddSubsequent(){
+        Product product = new Product("Peas", 0.99);
+        Basket basket = new Basket(product, product, product);
+        basket.add(product);
+        assertEquals(4, basket.getItems().size());
+    }
+
 }
