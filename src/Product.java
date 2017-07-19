@@ -7,4 +7,12 @@ public class Product {
         name = aName;
         price = aPrice;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
