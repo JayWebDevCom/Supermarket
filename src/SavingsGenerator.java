@@ -1,20 +1,26 @@
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.lang.reflect.Constructor;
+import java.util.*;
 
 public class SavingsGenerator {
 
     private ArrayList<Product> addedItems;
+    private static Hashtable<String, String> productClasses;
 
     public SavingsGenerator(){
         addedItems = new ArrayList<Product>();
+        productClasses = new Hashtable<String, String>(){{
+            put("Coke", "Coke");
+        }};
     }
 
     public void identifySavings(Basket basket){
 
         for(Product item : basket.getItems()){
+
+//            Class<?> c = Class.forName(item.getName());
+//            Constructor<?> cons = c.getConstructor();
+//            Object specProduct = cons.newInstance(item.getName(), item.getPrice());
 
             int count = Collections.frequency(basket.getItems(), item);
             double numSaving = Math.floor(count/3);
@@ -26,7 +32,9 @@ public class SavingsGenerator {
                     basket.addSaving(new Saving(item.getName(), item.getPrice()));
                 }
             }
+
             addedItems.add(item);
+
         }
 
     }
