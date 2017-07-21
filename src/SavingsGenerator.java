@@ -22,19 +22,33 @@ public class SavingsGenerator {
 //            Constructor<?> cons = c.getConstructor();
 //            Object specProduct = cons.newInstance(item.getName(), item.getPrice());
 
-            int count = Collections.frequency(basket.getItems(), item);
-            double numSaving = Math.floor(count/2);
-            int numSavings = (int) numSaving;
+            int count;
+            double numSaving;
+            int numSavings;
 
-            if ( !addedItems.contains(item) && item.getName() == "Coke" && numSavings > 0 ){
+
+            if ( !addedItems.contains(item) && item.getName() == "Coke" ) {
+                count = Collections.frequency(basket.getItems(), item);
+                numSaving = Math.floor(count/2);
+                numSavings = (int) numSaving;
+                for (int i = 0;  i < numSavings; i++) {
+                    basket.addSaving(new Saving(item.getName(), 0.40, item.getName() + " 2 for $1"));
+                }
+
+            }
+
+            if ( !addedItems.contains(item) && item.getName() == "Beans" ) {
+                count = Collections.frequency(basket.getItems(), item);
+                numSaving = Math.floor(count/3);
+                numSavings = (int) numSaving;
 
                 for (int i = 0;  i < numSavings; i++) {
                     basket.addSaving(new Saving(item.getName(), 0.40, item.getName() + " 2 for $1"));
                 }
+
             }
 
             addedItems.add(item);
-
         }
 
     }
