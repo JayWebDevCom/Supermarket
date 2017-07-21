@@ -9,12 +9,17 @@ public class SavingTest {
 
     @Before
     public void setUp() throws Exception {
-        saving = new Saving("Baked Beans", 1.99);
+        saving = new Saving("Baked Beans", 1.99, "Baked Beans Message");
     }
 
     @Test
     public void savingName(){
         assertEquals("Baked Beans", saving.getName());
+    }
+
+    @Test
+    public void savingMessage(){
+        assertEquals("Baked Beans Message", saving.getMessage());
     }
 
     @Test

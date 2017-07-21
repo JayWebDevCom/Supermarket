@@ -30,14 +30,14 @@ public class BasketTest {
 
     @Test
     public void addSaving(){
-        Saving saving = new Saving("test saving", 2.00);
+        Saving saving = new Saving("test product", 2.00, "test message");
         basket.addSaving(saving);
         assertTrue(basket.getSavingsItems().contains(saving));
     }
 
     @Test
     public void getSaving(){
-        Saving saving = new Saving("test saving", 2.00);
+        Saving saving = new Saving("test product", 2.00, "test message");
         basket.addSaving(saving);
         assertEquals(1, basket.getSavingsItems().size());
     }

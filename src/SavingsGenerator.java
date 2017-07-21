@@ -23,13 +23,13 @@ public class SavingsGenerator {
 //            Object specProduct = cons.newInstance(item.getName(), item.getPrice());
 
             int count = Collections.frequency(basket.getItems(), item);
-            double numSaving = Math.floor(count/3);
+            double numSaving = Math.floor(count/2);
             int numSavings = (int) numSaving;
 
             if ( !addedItems.contains(item) && item.getName() == "Coke" && numSavings > 0 ){
 
                 for (int i = 0;  i < numSavings; i++) {
-                    basket.addSaving(new Saving(item.getName(), item.getPrice()));
+                    basket.addSaving(new Saving(item.getName(), 0.40, item.getName() + " 2 for $1"));
                 }
             }
 
