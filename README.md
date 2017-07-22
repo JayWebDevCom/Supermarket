@@ -1,4 +1,6 @@
-### Things to consider
+### Supermarket
+
+##### Things to consider
 
 * One offer can be applied to multiple products
 * Offer needs to have a list of included products
