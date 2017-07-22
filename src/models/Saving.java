@@ -1,3 +1,5 @@
+package models;
+
 public class Saving {
 
     private String name;

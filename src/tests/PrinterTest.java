@@ -1,8 +1,10 @@
+package tests;
+
+import models.Printer;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.*;

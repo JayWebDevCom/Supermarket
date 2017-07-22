@@ -1,7 +1,10 @@
+package tests;
+
+import models.Basket;
+import models.Product;
+import models.SavingsGenerator;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Collections;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +14,7 @@ public class SavingsGeneratorTest {
 
     @Before
     public void setUp() throws Exception {
-        coke = new Product("Coke", 0.70);
+        coke = new Product("models.Coke", 0.70);
         beans = new Product("Beans", 0.50);
         basket = new Basket(coke, coke, coke, coke, coke, beans, beans, beans);
         savGen = new SavingsGenerator();

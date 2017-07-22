@@ -1,3 +1,8 @@
+package tests;
+
+import models.Basket;
+import models.Product;
+import models.Saving;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,5 +1,5 @@
-import javax.swing.*;
-import java.lang.reflect.Constructor;
+package models;
+
 import java.util.*;
 
 public class SavingsGenerator {
@@ -10,7 +10,7 @@ public class SavingsGenerator {
     public SavingsGenerator(){
         addedItems = new ArrayList<Product>();
         productClasses = new Hashtable<String, String>(){{
-            put("Coke", "Coke");
+            put("models.Coke", "models.Coke");
         }};
     }
 
@@ -27,7 +27,7 @@ public class SavingsGenerator {
             int numSavings;
 
 
-            if ( !addedItems.contains(item) && item.getName() == "Coke" ) {
+            if ( !addedItems.contains(item) && item.getName() == "models.Coke" ) {
                 count = Collections.frequency(basket.getItems(), item);
                 numSaving = Math.floor(count/2);
                 numSavings = (int) numSaving;

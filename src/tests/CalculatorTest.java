@@ -1,3 +1,6 @@
+package tests;
+
+import models.Calculator;
 import org.junit.Before;
 import org.junit.Test;
 
