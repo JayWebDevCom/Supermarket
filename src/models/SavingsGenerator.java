@@ -10,7 +10,7 @@ public class SavingsGenerator {
     public SavingsGenerator(){
         addedItems = new ArrayList<Product>();
         productClasses = new Hashtable<String, String>(){{
-            put("models.Coke", "models.Coke");
+            put("Coke", "Coke");
         }};
     }
 
@@ -27,7 +27,7 @@ public class SavingsGenerator {
             int numSavings;
 
 
-            if ( !addedItems.contains(item) && item.getName() == "models.Coke" ) {
+            if ( !addedItems.contains(item) && item.getName() == "Coke" ) {
                 count = Collections.frequency(basket.getItems(), item);
                 numSaving = Math.floor(count/2);
                 numSavings = (int) numSaving;
