@@ -7,3 +7,5 @@
 
 * TDD an approach to create different offer objects that inherit from an abstract offer class
 * Each SubOffer overrides an apply method to add a saving to the  basket
+
+* Implement packages
