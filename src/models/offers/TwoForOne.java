@@ -11,8 +11,8 @@ public class TwoForOne extends Offer {
 
     private static final int REQUIRED_NUMBER = 2;
 
-    public TwoForOne(String aName) {
-        super(aName);
+    public TwoForOne(String aName, Product... products) {
+        super(aName, products);
     }
 
     @Override
