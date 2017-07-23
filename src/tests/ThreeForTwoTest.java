@@ -22,10 +22,28 @@ public class ThreeForTwoTest {
     }
 
     @Test
-    public void applyToBasketAddsCorrecNumberOfSavings() throws Exception {
+    public void applyToBasketAddsOneSaving() throws Exception {
+        assertEquals(0, basket.getSavingsItems().size());
         tft.applyToBasket(basket);
         assertEquals(1, basket.getSavingsItems().size());
         assertEquals(-1 * juice.getPrice(), basket.getSavingsItems().get(0).getSaving(), 0.001);
+    }
+
+    @Test
+    public void applyToBasketAddsTwoSaving() throws Exception {
+        assertEquals(0, basket.getSavingsItems().size());
+        basket.add(juice);
+        tft.applyToBasket(basket);
+        assertEquals(2, basket.getSavingsItems().size());
+        assertEquals(-1 * juice.getPrice(), basket.getSavingsItems().get(0).getSaving(), 0.001);
+    }
+
+    @Test
+    public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
+        assertEquals(0, basket.getSavingsItems().size());
+        tft.remove(juice);
+        tft.applyToBasket(basket);
+        assertEquals(0, basket.getSavingsItems().size());
     }
 
 }

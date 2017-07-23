@@ -72,4 +72,12 @@ public class TwoForOnePoundTest {
         assertEquals(-0.98, basket.getSavingsItems().get(0).getSaving(), 0.001);
     }
 
+    @Test
+    public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
+        assertEquals(0, basket.getSavingsItems().size());
+        tfop.remove(coke);
+        tfop.applyToBasket(basket);
+        assertEquals(0, basket.getSavingsItems().size());
+    }
+
 }

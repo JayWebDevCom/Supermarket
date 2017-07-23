@@ -18,8 +18,8 @@ public class TwoForOneTest {
     public void setUp() throws Exception {
         coke = new Product("Coke", 0.70);
         beans = new Product("Beans", 0.50);
-        basket = new Basket(coke, coke, coke, coke, coke, beans, beans, beans);
-        twoForOne = new TwoForOne("Two For One", coke);
+        basket = new Basket(coke, coke, coke, beans, beans, beans, beans, beans);
+        twoForOne = new TwoForOne("Two For One", beans);
     }
 
     @Test
@@ -28,27 +28,46 @@ public class TwoForOneTest {
     }
 
     @Test
-    public void ApplySavingsCokeOnly() throws Exception {
+    public void applySavingsOnBeans() throws Exception {
         assertEquals(0, basket.getSavingsItems().size());
         twoForOne.applyToBasket(basket);
         assertEquals(2, basket.getSavingsItems().size());
     }
 
     @Test
-    public void ApplySavingsCokeOnly2() throws Exception {
+    public void applySavingsOnBeans2() throws Exception {
         assertEquals(0, basket.getSavingsItems().size());
-        basket.add(coke);
+        basket.add(beans);
         twoForOne.applyToBasket(basket);
         assertEquals(3, basket.getSavingsItems().size());
     }
 
     @Test
-    public void ApplySavingsCokeOnly3() throws Exception {
+    public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
         assertEquals(0, basket.getSavingsItems().size());
-        basket.add(coke);
+        twoForOne.remove(beans);
         twoForOne.applyToBasket(basket);
-        assertEquals(3, basket.getSavingsItems().size());
+        assertEquals(0, basket.getSavingsItems().size());
     }
 
+    @Test
+    public void applyToBasketCokeAndBeansTogether() throws Exception {
+        basket = new Basket(coke, coke, coke, coke, beans, beans, beans, beans);
+        twoForOne.add(coke);
+        assertEquals(0, basket.getSavingsItems().size());
+        twoForOne.applyToBasket(basket);
+        assertEquals(4, basket.getSavingsItems().size());
+    }
+
+    @Test
+    public void applyToBasketCokeAndBeansTogetherCorrectSavingAmout() throws Exception {
+        basket = new Basket(coke, coke, coke, coke, beans, beans, beans, beans);
+        twoForOne.add(coke);
+        assertEquals(0, basket.getSavingsItems().size());
+        twoForOne.applyToBasket(basket);
+        assertEquals(4, basket.getSavingsItems().size());
+        assertEquals(-0.70, basket.getSavingsItems().get(0).getSaving(), 0.01);
+        assertEquals(-0.50, basket.getSavingsItems().get(2).getSaving(), 0.01);
+    }
 
 }
