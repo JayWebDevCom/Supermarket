@@ -2,12 +2,12 @@ package models;
 
 public class Saving {
 
-    private String name;
+    private String productName;
     private double price;
     private String message;
 
     public String getName() {
-        return name;
+        return productName;
     }
 
     public double getPrice() {
@@ -19,15 +19,13 @@ public class Saving {
     }
 
     public Saving(String aName, double aPrice, String aMessage){
-        name = aName;
+        productName = aName;
         price = aPrice;
         message = aMessage;
         negatePrice();
     }
 
-    public void negatePrice(){
+    private void negatePrice(){
         price *= -1;
     }
-
-
 }

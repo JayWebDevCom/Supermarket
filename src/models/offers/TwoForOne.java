@@ -27,7 +27,7 @@ public class TwoForOne extends Offer {
             int numSavings = (int) numSaving;
 
                 for (int i = 0; i < numSavings; i++) {
-                    basket.addSaving(new Saving(product.getName(), 0.40, product.getName() + " 2 for $1"));
+                    basket.addSaving(new Saving(product.getName(), product.getPrice(), product.getName() + ' ' + getName()));
                 }
 
         }
