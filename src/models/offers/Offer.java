@@ -2,7 +2,6 @@ package models.offers;
 
 import models.Basket;
 import models.Product;
-import models.Saving;
 
 import java.util.ArrayList;
 
@@ -15,15 +14,15 @@ public abstract class Offer {
         name = aName;
         includedProducts = new ArrayList<Product>();
         for (Product product : products) {
-            add(product);
+            addProduct(product);
         }
     }
 
-    public void add(Product product){
+    public void addProduct(Product product){
         includedProducts.add(product);
     }
 
-    public void remove(Product product){
+    public void removeProduct(Product product){
         includedProducts.remove(product);
     }
 

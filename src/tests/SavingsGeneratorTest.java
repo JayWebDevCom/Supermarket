@@ -3,6 +3,8 @@ package tests;
 import models.Basket;
 import models.Product;
 import models.SavingsGenerator;
+import models.offers.Offer;
+import models.offers.ThreeForTwo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,56 +18,20 @@ public class SavingsGeneratorTest {
     public void setUp() throws Exception {
         coke = new Product("Coke", 0.70);
         beans = new Product("Beans", 0.50);
-        basket = new Basket(coke, coke, coke, coke, coke, beans, beans, beans);
+        basket = new Basket(beans, beans, beans);
         savGen = new SavingsGenerator();
     }
 
     @Test
-    public void identifySavingsAddsAsASavingsObjectBeansAndCoke() throws Exception {
-        savGen.identifySavings(basket);
-        assertEquals(3, basket.getSavingsItems().size());
+    public void threeOffersByDefault(){
+        assertEquals(3, savGen.getOffers().size());
     }
 
     @Test
-    public void identifySavingsAddsAsMultipleSavingsObjectCoke() throws Exception {
-        basket = new Basket(coke, coke, coke, coke, coke, coke);
-        savGen.identifySavings(basket);
-        assertEquals(3, basket.getSavingsItems().size());
-    }
-
-    @Test
-    public void identifySavingsAddsAsMultipleSavingsObjectBeans() throws Exception {
-        basket = new Basket(beans, beans, beans);
-        savGen.identifySavings(basket);
-        assertEquals(1, basket.getSavingsItems().size());
-    }
-
-    @Test
-    public void identifySavingsAddsAsMultipleSavingsObjectBeansTwo() throws Exception {
-        basket = new Basket(beans, beans, beans, beans);
-        savGen.identifySavings(basket);
-        assertEquals(1, basket.getSavingsItems().size());
-    }
-
-    @Test
-    public void identifySavingsAddsAsMultipleSavingsObjectBeansThree() throws Exception {
-        basket = new Basket(beans, beans, beans, beans, beans);
-        savGen.identifySavings(basket);
-        assertEquals(1, basket.getSavingsItems().size());
-    }
-
-    @Test
-    public void identifySavingsAddsAsMultipleSavingsCokeObjectTwo() throws Exception {
-        basket = new Basket(coke, coke, coke, coke, coke, coke, coke, coke, coke);
-        savGen.identifySavings(basket);
-        assertEquals(4, basket.getSavingsItems().size());
-    }
-
-    @Test
-    public void identifySavingsAddsAsMultipleSavingsObjectThree() throws Exception {
-        basket = new Basket(coke, coke, coke, coke, coke, coke, coke, coke, coke, coke);
-        savGen.identifySavings(basket);
-        assertEquals(5, basket.getSavingsItems().size());
+    public void appliesThreeForTwoCorrectly(){
+        assertEquals(0, basket.getOffers().size());
+        savGen.applyOffers(basket);
+        assertEquals(1, basket.getOffers().size());
     }
 
 }

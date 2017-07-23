@@ -20,6 +20,8 @@ public class ThreeForTwo extends Offer {
 
         ArrayList<Product> doneItems = new ArrayList<Product>();
 
+        System.out.println("1");
+
         for (Product product : basket.getItems()) {
 
             if (!doneItems.contains(product) && includedProducts.contains(product)) {
@@ -29,7 +31,7 @@ public class ThreeForTwo extends Offer {
                 int numSavings = (int) numSaving;
 
                 for (int i = 0; i < numSavings; i++) {
-                    basket.addSaving(new Saving(product.getName(), product.getPrice(), product.getName() + ' ' + getName()));
+                    basket.addOffer(new Saving(product.getName(), product.getPrice(), product.getName() + ' ' + getName()));
                 }
 
             }

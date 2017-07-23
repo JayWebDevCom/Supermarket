@@ -30,7 +30,7 @@ public class TwoForOnePound extends Offer {
                 double saving = (REQUIRED_NUMBER * product.getPrice()) - 1.00;
 
                 for (int i = 0; i < numSavings; i++) {
-                    basket.addSaving(new Saving(product.getName(), saving, product.getName() + ' ' + getName()));
+                    basket.addOffer(new Saving(product.getName(), saving, product.getName() + ' ' + getName()));
                 }
 
             }

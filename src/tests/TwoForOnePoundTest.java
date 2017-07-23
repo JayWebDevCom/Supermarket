@@ -2,7 +2,6 @@ package tests;
 
 import models.Basket;
 import models.Product;
-import models.offers.TwoForOne;
 import models.offers.TwoForOnePound;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,35 +30,35 @@ public class TwoForOnePoundTest {
     public void zeroSavingsForOneCoke(){
         basket = new Basket(coke);
         tfop.applyToBasket(basket);
-        assertEquals(0, basket.getSavingsItems().size());
+        assertEquals(0, basket.getOffers().size());
     }
 
     @Test
     public void oneSavingForTwoCokes(){
         basket = new Basket(coke, coke);
         tfop.applyToBasket(basket);
-        assertEquals(1, basket.getSavingsItems().size());
+        assertEquals(1, basket.getOffers().size());
     }
 
     @Test
     public void twoSavingsForThreeCokes(){
         tfop.applyToBasket(basket);
-        assertEquals(2, basket.getSavingsItems().size());
+        assertEquals(2, basket.getOffers().size());
     }
 
     @Test
     public void twoSavingsForFourCokes(){
         basket.add(coke);
         tfop.applyToBasket(basket);
-        assertEquals(2, basket.getSavingsItems().size());
+        assertEquals(2, basket.getOffers().size());
     }
 
     @Test
     public void offerProvidesSavingWithCorrectAmount(){
         tfop.applyToBasket(basket);
-        assertEquals(2, basket.getSavingsItems().size());
-        assertEquals(-0.40, basket.getSavingsItems().get(0).getSaving(), 0.001);
-        assertEquals(-0.40, basket.getSavingsItems().get(1).getSaving(), 0.001);
+        assertEquals(2, basket.getOffers().size());
+        assertEquals(-0.40, basket.getOffers().get(0).getSaving(), 0.001);
+        assertEquals(-0.40, basket.getOffers().get(1).getSaving(), 0.001);
     }
 
     @Test
@@ -68,16 +67,16 @@ public class TwoForOnePoundTest {
         TwoForOnePound tfop = new TwoForOnePound("Two for £1", butter);
         Basket basket = new Basket(butter, butter, butter);
         tfop.applyToBasket(basket);
-        assertEquals(1, basket.getSavingsItems().size());
-        assertEquals(-0.98, basket.getSavingsItems().get(0).getSaving(), 0.001);
+        assertEquals(1, basket.getOffers().size());
+        assertEquals(-0.98, basket.getOffers().get(0).getSaving(), 0.001);
     }
 
     @Test
     public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
-        assertEquals(0, basket.getSavingsItems().size());
-        tfop.remove(coke);
+        assertEquals(0, basket.getOffers().size());
+        tfop.removeProduct(coke);
         tfop.applyToBasket(basket);
-        assertEquals(0, basket.getSavingsItems().size());
+        assertEquals(0, basket.getOffers().size());
     }
 
 }

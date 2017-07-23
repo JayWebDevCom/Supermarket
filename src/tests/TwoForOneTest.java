@@ -29,45 +29,45 @@ public class TwoForOneTest {
 
     @Test
     public void applySavingsOnBeans() throws Exception {
-        assertEquals(0, basket.getSavingsItems().size());
+        assertEquals(0, basket.getOffers().size());
         twoForOne.applyToBasket(basket);
-        assertEquals(2, basket.getSavingsItems().size());
+        assertEquals(2, basket.getOffers().size());
     }
 
     @Test
     public void applySavingsOnBeans2() throws Exception {
-        assertEquals(0, basket.getSavingsItems().size());
+        assertEquals(0, basket.getOffers().size());
         basket.add(beans);
         twoForOne.applyToBasket(basket);
-        assertEquals(3, basket.getSavingsItems().size());
+        assertEquals(3, basket.getOffers().size());
     }
 
     @Test
     public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
-        assertEquals(0, basket.getSavingsItems().size());
-        twoForOne.remove(beans);
+        assertEquals(0, basket.getOffers().size());
+        twoForOne.removeProduct(beans);
         twoForOne.applyToBasket(basket);
-        assertEquals(0, basket.getSavingsItems().size());
+        assertEquals(0, basket.getOffers().size());
     }
 
     @Test
     public void applyToBasketCokeAndBeansTogether() throws Exception {
         basket = new Basket(coke, coke, coke, coke, beans, beans, beans, beans);
-        twoForOne.add(coke);
-        assertEquals(0, basket.getSavingsItems().size());
+        twoForOne.addProduct(coke);
+        assertEquals(0, basket.getOffers().size());
         twoForOne.applyToBasket(basket);
-        assertEquals(4, basket.getSavingsItems().size());
+        assertEquals(4, basket.getOffers().size());
     }
 
     @Test
     public void applyToBasketCokeAndBeansTogetherCorrectSavingAmout() throws Exception {
         basket = new Basket(coke, coke, coke, coke, beans, beans, beans, beans);
-        twoForOne.add(coke);
-        assertEquals(0, basket.getSavingsItems().size());
+        twoForOne.addProduct(coke);
+        assertEquals(0, basket.getOffers().size());
         twoForOne.applyToBasket(basket);
-        assertEquals(4, basket.getSavingsItems().size());
-        assertEquals(-0.70, basket.getSavingsItems().get(0).getSaving(), 0.01);
-        assertEquals(-0.50, basket.getSavingsItems().get(2).getSaving(), 0.01);
+        assertEquals(4, basket.getOffers().size());
+        assertEquals(-0.70, basket.getOffers().get(0).getSaving(), 0.01);
+        assertEquals(-0.50, basket.getOffers().get(2).getSaving(), 0.01);
     }
 
 }
