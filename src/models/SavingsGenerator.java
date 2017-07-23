@@ -20,7 +20,7 @@ public class SavingsGenerator {
 
 //            Class<?> c = Class.forName(item.getName());
 //            Constructor<?> cons = c.getConstructor();
-//            Object specProduct = cons.newInstance(item.getName(), item.getPrice());
+//            Object specProduct = cons.newInstance(item.getName(), item.getSaving());
 
             int count;
             double numSaving;

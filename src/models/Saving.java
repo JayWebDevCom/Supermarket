@@ -2,30 +2,37 @@ package models;
 
 public class Saving {
 
-    private String productName;
-    private double price;
+    private String name;
+
+    private final String productName;
+    private double saving;
     private String message;
 
     public String getName() {
+        return name;
+    }
+
+    public String getProductName() {
         return productName;
     }
 
-    public double getPrice() {
-        return price;
+    public double getSaving() {
+        return saving;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public Saving(String aName, double aPrice, String aMessage){
-        productName = aName;
-        price = aPrice;
+    public Saving(String aproductName, double aPrice, String aMessage){
+        productName = aproductName;
+        name = "Two for one";
+        saving = aPrice;
         message = aMessage;
         negatePrice();
     }
 
     private void negatePrice(){
-        price *= -1;
+        saving *= -1;
     }
 }

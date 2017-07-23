@@ -17,7 +17,12 @@ public class SavingTest {
 
     @Test
     public void savingName(){
-        assertEquals("Baked Beans", saving.getName());
+        assertEquals("Baked Beans", saving.getProductName());
+    }
+
+    @Test
+    public void offerName(){
+        assertEquals("Two for one", saving.getName());
     }
 
     @Test
@@ -27,7 +32,7 @@ public class SavingTest {
 
     @Test
     public void savingPriceisNegatedOnInstantiation(){
-        assertEquals(-1.99, saving.getPrice(), 0.001);
+        assertEquals(-1.99, saving.getSaving(), 0.001);
     }
 
 }
