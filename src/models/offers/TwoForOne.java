@@ -9,6 +9,8 @@ import java.util.Collections;
 
 public class TwoForOne extends Offer {
 
+    private static final int REQUIRED_NUMBER = 2;
+
     public TwoForOne(String aName) {
         super(aName);
     }
@@ -23,7 +25,7 @@ public class TwoForOne extends Offer {
             if (!doneItems.contains(product) && includedProducts.contains(product)) {
 
             int countOfItemInBasket = Collections.frequency(basket.getItems(), product);
-            double numSaving = Math.floor(countOfItemInBasket / 2);
+            double numSaving = Math.floor(countOfItemInBasket / REQUIRED_NUMBER);
             int numSavings = (int) numSaving;
 
                 for (int i = 0; i < numSavings; i++) {
@@ -35,10 +37,6 @@ public class TwoForOne extends Offer {
             doneItems.add(product);
 
         }
-
-
-
-
     }
 
 }
