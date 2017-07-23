@@ -14,9 +14,8 @@ public abstract class Offer {
     public Offer(String aName, Product... products){
         name = aName;
         includedProducts = new ArrayList<Product>();
-
         for (Product product : products) {
-            includedProducts.add(product);
+            add(product);
         }
     }
 
