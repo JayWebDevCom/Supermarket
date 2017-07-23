@@ -2,6 +2,7 @@ package tests;
 
 import models.Basket;
 import models.Product;
+import models.offers.TwoForOne;
 import models.offers.TwoForOnePound;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,6 +52,24 @@ public class TwoForOnePoundTest {
         basket.add(coke);
         tfop.applyToBasket(basket);
         assertEquals(2, basket.getSavingsItems().size());
+    }
+
+    @Test
+    public void offerProvidesSavingWithCorrectAmount(){
+        tfop.applyToBasket(basket);
+        assertEquals(2, basket.getSavingsItems().size());
+        assertEquals(-0.40, basket.getSavingsItems().get(0).getSaving(), 0.001);
+        assertEquals(-0.40, basket.getSavingsItems().get(1).getSaving(), 0.001);
+    }
+
+    @Test
+    public void offerProvidesSavingWithCorrectAmountTwo(){
+        Product butter = new Product("Butter", 0.99);
+        TwoForOnePound tfop = new TwoForOnePound("Two for £1", butter);
+        Basket basket = new Basket(butter, butter, butter);
+        tfop.applyToBasket(basket);
+        assertEquals(1, basket.getSavingsItems().size());
+        assertEquals(-0.98, basket.getSavingsItems().get(0).getSaving(), 0.001);
     }
 
 }
