@@ -13,9 +13,9 @@ import static org.junit.Assert.*;
 
 public class ThreeForTwoTest {
 
-    ThreeForTwo tft;
-    Product juice;
-    Basket basket;
+    private ThreeForTwo tft;
+    private Product juice;
+    private Basket basket;
 
     @Before
     public void setUp() throws Exception {
@@ -42,14 +42,14 @@ public class ThreeForTwoTest {
     @Test
     public void applyToBasketAddsOneSavingForThree() throws Exception {
         Basket basket = new Basket(juice, juice, juice);
-        List<Saving> savings = tft.applyToBasket(basket.getItems());
+        List<Saving> savings = tft.applyToBasket(basket.getProducts());
         assertEquals(1, savings.size());
         assertEquals(-1 * juice.getPrice(), savings.get(0).getSaving(), 0.001);
     }
 
     @Test
     public void applyToBasketAddsOneSavingForFive() throws Exception {
-        List<Saving> savings = tft.applyToBasket(basket.getItems());
+        List<Saving> savings = tft.applyToBasket(basket.getProducts());
         assertEquals(1, savings.size());
         assertEquals(-1 * juice.getPrice(), savings.get(0).getSaving(), 0.001);
     }
@@ -57,7 +57,7 @@ public class ThreeForTwoTest {
     @Test
     public void applyToBasketAddsTwoSavingForSix() throws Exception {
         basket.add(juice);
-        List<Saving> savings = tft.applyToBasket(basket.getItems());
+        List<Saving> savings = tft.applyToBasket(basket.getProducts());
         assertEquals(2, savings.size());
         assertEquals(-1 * juice.getPrice(), savings.get(0).getSaving(), 0.001);
     }
@@ -65,7 +65,7 @@ public class ThreeForTwoTest {
     @Test
     public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
         tft.removeProduct(juice.getName());
-        List<Saving> savings = tft.applyToBasket(basket.getItems());
+        List<Saving> savings = tft.applyToBasket(basket.getProducts());
         assertEquals(0, savings.size());
     }
 

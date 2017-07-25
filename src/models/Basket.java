@@ -1,25 +1,23 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Basket {
 
-    private ArrayList<Product> items;
+    private ArrayList<Product> products;
 
     public Basket(Product... products){
-        items = new ArrayList<Product>();
-
-        for (Product p : products) {
-            items.add(p);
-        }
+        this.products = new ArrayList<>();
+        Collections.addAll(this.products, products);
     }
 
-    public ArrayList<Product> getItems() {
-        return items;
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 
     public void add(Product product) {
-        items.add(product);
+        products.add(product);
     }
 
 }

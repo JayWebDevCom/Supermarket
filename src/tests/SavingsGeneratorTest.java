@@ -4,8 +4,6 @@ import models.Basket;
 import models.Product;
 import models.Saving;
 import models.SavingsGenerator;
-import models.offers.Offer;
-import models.offers.ThreeForTwo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,13 +13,13 @@ import static org.junit.Assert.*;
 
 public class SavingsGeneratorTest {
 
-    Product coke; Basket basket; SavingsGenerator savGen; Product beans;
+    private Product coke; private Basket basket; private SavingsGenerator savGen; private Product beans;
 
     @Before
     public void setUp() throws Exception {
         coke = new Product("Coke", 0.70);
         beans = new Product("Beans", 0.50);
-        basket = new Basket(beans, beans, beans);
+        basket = new Basket(beans, beans, beans, beans, coke, coke, coke);
         savGen = new SavingsGenerator();
     }
 
@@ -32,8 +30,11 @@ public class SavingsGeneratorTest {
 
     @Test
     public void appliesThreeForTwoCorrectly(){
-        List<Saving> savings = savGen.applyOffers(basket.getItems());
-        assertEquals(1, savings.size());
+        /*
+        * Two Savings should be added - one for 3for2 beans and one for 2for1 coke
+        */
+        List<Saving> savings = savGen.applyOffers(basket.getProducts());
+        assertEquals(2, savings.size());
     }
 
 }
