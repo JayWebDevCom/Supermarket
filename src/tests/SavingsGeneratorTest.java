@@ -31,10 +31,20 @@ public class SavingsGeneratorTest {
     @Test
     public void appliesThreeForTwoCorrectly(){
         /*
-        * Two Savings should be added - one for 3for2 beans and one for 2for1 coke
+        * 2 Savings should be added - 1 for 3for2 beans and 1 for 2for1 coke
         */
         List<Saving> savings = savGen.generateSavingsFromOffers(basket.getProducts());
         assertEquals(2, savings.size());
+    }
+
+    @Test
+    public void appliesThreeForTwoCorrectlyWithMore(){
+        /*
+        * 4 Savings should be added - 2 for 3for2 beans and 2 for 2for1 coke
+        */
+        basket.add(coke, beans, beans);
+        List<Saving> savings = savGen.generateSavingsFromOffers(basket.getProducts());
+        assertEquals(4, savings.size());
     }
 
 }

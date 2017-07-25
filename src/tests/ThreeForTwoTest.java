@@ -26,7 +26,6 @@ public class ThreeForTwoTest {
 
     @Test
     public void addOffer(){
-        assertEquals(1, tft.getIncludedProducts().size());
         Product yoghurt = new Product("Yoghurt", 1.49);
         tft.addProduct(yoghurt.getName());
         assertEquals(2, tft.getIncludedProducts().size());
@@ -34,7 +33,6 @@ public class ThreeForTwoTest {
 
     @Test
     public void removeOffer(){
-        assertEquals(1, tft.getIncludedProducts().size());
         tft.removeProduct(juice.getName());
         assertEquals(0, tft.getIncludedProducts().size());
     }

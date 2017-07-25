@@ -16,8 +16,8 @@ public class Basket {
         return products;
     }
 
-    public void add(Product product) {
-        products.add(product);
+    public void add(Product... products) {
+        Collections.addAll(this.products, products);
     }
 
 }

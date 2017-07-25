@@ -18,16 +18,16 @@ public class BasketTest {
 
     @Test
     public void basketAdd(){
-        Product product = new Product("Peas", 0.99);
-        basket.add(product);
-        assertEquals(1, basket.getProducts().size());
+        Product peas = new Product("Peas", 0.99);
+        Product rice = new Product("Rice", 3.99);
+        basket.add(peas, rice);
+        assertEquals(2, basket.getProducts().size());
     }
 
     @Test
     public void basketAddSubsequent(){
         Product product = new Product("Peas", 0.99);
         Basket basket = new Basket(product, product, product);
-        assertEquals(3, basket.getProducts().size());
         basket.add(product);
         assertEquals(4, basket.getProducts().size());
     }
