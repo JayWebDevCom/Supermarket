@@ -10,11 +10,11 @@ import java.util.List;
 public abstract class Offer {
 
     private String name;
-    public List<String> includedProducts;
+    private List<String> includedProducts;
 
-    public Offer(String aName, String... products){
+    Offer(String aName, String... products){
         name = aName;
-        includedProducts = new ArrayList<String>();
+        includedProducts = new ArrayList<>();
         for (String product : products) {
             addProduct(product);
         }
@@ -36,6 +36,6 @@ public abstract class Offer {
         return name;
     }
 
-    public abstract List<Saving> applyToBasket(List<Product> items);
+    public abstract List<Saving> generateSavings(List<Product> items);
 
 }

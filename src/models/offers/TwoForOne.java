@@ -16,10 +16,10 @@ public class TwoForOne extends Offer {
     }
 
     @Override
-    public List<Saving> applyToBasket(List<Product> items){
+    public List<Saving> generateSavings(List<Product> items){
 
-        List<Product> doneItems = new ArrayList<Product>();
-        List<Saving> savings = new ArrayList<Saving>();
+        List<Product> doneItems = new ArrayList<>();
+        List<Saving> savings = new ArrayList<>();
 
         for (Product product : items) {
 

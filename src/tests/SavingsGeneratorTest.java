@@ -33,7 +33,7 @@ public class SavingsGeneratorTest {
         /*
         * Two Savings should be added - one for 3for2 beans and one for 2for1 coke
         */
-        List<Saving> savings = savGen.applyOffers(basket.getProducts());
+        List<Saving> savings = savGen.generateSavingsFromOffers(basket.getProducts());
         assertEquals(2, savings.size());
     }
 
