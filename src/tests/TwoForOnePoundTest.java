@@ -2,9 +2,12 @@ package tests;
 
 import models.Basket;
 import models.Product;
+import models.Saving;
 import models.offers.TwoForOnePound;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -17,7 +20,7 @@ public class TwoForOnePoundTest {
     @Before
     public void setUp() throws Exception {
         coke = new Product("Coke", 0.70);
-        tfop = new TwoForOnePound("Two for £1", coke);
+        tfop = new TwoForOnePound("Two for £1", coke.getName());
         basket = new Basket(coke, coke, coke, coke);
     }
 
@@ -29,54 +32,54 @@ public class TwoForOnePoundTest {
     @Test
     public void zeroSavingsForOneCoke(){
         basket = new Basket(coke);
-        tfop.applyToBasket(basket);
+        tfop.applyToBasket(basket.getItems());
         assertEquals(0, basket.getOffers().size());
     }
 
     @Test
     public void oneSavingForTwoCokes(){
         basket = new Basket(coke, coke);
-        tfop.applyToBasket(basket);
-        assertEquals(1, basket.getOffers().size());
+        List<Saving> offers = tfop.applyToBasket(basket.getItems());
+        assertEquals(1, offers.size());
     }
 
     @Test
     public void twoSavingsForThreeCokes(){
-        tfop.applyToBasket(basket);
-        assertEquals(2, basket.getOffers().size());
+        List<Saving> savings = tfop.applyToBasket(basket.getItems());
+        assertEquals(2, savings.size());
     }
 
     @Test
     public void twoSavingsForFourCokes(){
         basket.add(coke);
-        tfop.applyToBasket(basket);
-        assertEquals(2, basket.getOffers().size());
+        List<Saving> savings = tfop.applyToBasket(basket.getItems());
+        assertEquals(2,savings.size());
     }
 
     @Test
     public void offerProvidesSavingWithCorrectAmount(){
-        tfop.applyToBasket(basket);
-        assertEquals(2, basket.getOffers().size());
-        assertEquals(-0.40, basket.getOffers().get(0).getSaving(), 0.001);
-        assertEquals(-0.40, basket.getOffers().get(1).getSaving(), 0.001);
+        List<Saving> savings = tfop.applyToBasket(basket.getItems());
+        assertEquals(2, savings.size());
+        assertEquals(-0.40, savings.get(0).getSaving(), 0.001);
+        assertEquals(-0.40, savings.get(1).getSaving(), 0.001);
     }
 
     @Test
     public void offerProvidesSavingWithCorrectAmountTwo(){
         Product butter = new Product("Butter", 0.99);
-        TwoForOnePound tfop = new TwoForOnePound("Two for £1", butter);
+        TwoForOnePound tfop = new TwoForOnePound("Two for £1", butter.getName());
         Basket basket = new Basket(butter, butter, butter);
-        tfop.applyToBasket(basket);
-        assertEquals(1, basket.getOffers().size());
-        assertEquals(-0.98, basket.getOffers().get(0).getSaving(), 0.001);
+        List<Saving> savings = tfop.applyToBasket(basket.getItems());
+        assertEquals(1, savings.size());
+        assertEquals(-0.98, savings.get(0).getSaving(), 0.001);
     }
 
     @Test
     public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
         assertEquals(0, basket.getOffers().size());
-        tfop.removeProduct(coke);
-        tfop.applyToBasket(basket);
-        assertEquals(0, basket.getOffers().size());
+        tfop.removeProduct(coke.getName());
+        List<Saving> savings = tfop.applyToBasket(basket.getItems());
+        assertEquals(0, savings.size());
     }
 
 }

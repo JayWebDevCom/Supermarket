@@ -17,8 +17,8 @@ public class SavingsGenerator {
     public SavingsGenerator(){
         offers = new ArrayList<Offer>(
                 (Arrays.asList(
-                        twoForOnePound = new TwoForOnePound("Two For £1", coke),
-                        threeForTwo = new ThreeForTwo("Three For Two", beans),
+                        twoForOnePound = new TwoForOnePound("Two For £1", coke.getName()),
+                        threeForTwo = new ThreeForTwo("Three For Two", beans.getName()),
                         twoForOne = new TwoForOne("Two For One")
                 )
                 )
@@ -31,10 +31,12 @@ public class SavingsGenerator {
     }
 
 
-    public void applyOffers(Basket basket) {
+    public List<Saving> applyOffers(List<Product> products) {
+        List<Saving> savingsEarned = new ArrayList<Saving>();
         for(Offer offer : getOffers()){
-            offer.applyToBasket(basket);
+            savingsEarned.addAll(offer.applyToBasket(products));
         }
+        return savingsEarned;
     }
 
 }

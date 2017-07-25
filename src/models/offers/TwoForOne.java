@@ -1,42 +1,42 @@
 package models.offers;
 
-import models.Basket;
 import models.Product;
 import models.Saving;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class TwoForOne extends Offer {
 
     private static final int REQUIRED_NUMBER = 2;
 
-    public TwoForOne(String aName, Product... products) {
+    public TwoForOne(String aName, String... products) {
         super(aName, products);
     }
 
     @Override
-    public void applyToBasket(Basket basket){
+    public List<Saving> applyToBasket(List<Product> items){
 
-        ArrayList<Product> doneItems = new ArrayList<Product>();
+        List<Product> doneItems = new ArrayList<Product>();
+        List<Saving> savings = new ArrayList<Saving>();
 
-        for (Product product : basket.getItems()) {
+        for (Product product : items) {
 
-            if (!doneItems.contains(product) && includedProducts.contains(product)) {
+            if (!doneItems.contains(product) && getIncludedProducts().contains(product.getName())) {
 
-            int countOfItemInBasket = Collections.frequency(basket.getItems(), product);
-            double numSaving = Math.floor(countOfItemInBasket / REQUIRED_NUMBER);
-            int numSavings = (int) numSaving;
+                int countOfItemInBasket = Collections.frequency(items, product);
+                double numSaving = Math.floor(countOfItemInBasket / REQUIRED_NUMBER);
+                int numSavings = (int) numSaving;
 
                 for (int i = 0; i < numSavings; i++) {
-                    basket.addOffer(new Saving(product.getName(), product.getPrice(), product.getName() + ' ' + getName()));
+                    savings.add(new Saving(product.getName(), product.getPrice(), product.getName() + ' ' + getName()));
                 }
 
-        }
-
+            }
             doneItems.add(product);
-
         }
-    }
 
+        return savings;
+    }
 }
