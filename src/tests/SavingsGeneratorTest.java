@@ -32,7 +32,6 @@ public class SavingsGeneratorTest {
 
     @Test
     public void appliesThreeForTwoCorrectly(){
-        assertEquals(0, basket.getOffers().size());
         List<Saving> savings = savGen.applyOffers(basket.getItems());
         assertEquals(1, savings.size());
     }

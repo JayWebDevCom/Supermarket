@@ -32,15 +32,15 @@ public class TwoForOnePoundTest {
     @Test
     public void zeroSavingsForOneCoke(){
         basket = new Basket(coke);
-        tfop.applyToBasket(basket.getItems());
-        assertEquals(0, basket.getOffers().size());
+        List<Saving> savings = tfop.applyToBasket(basket.getItems());
+        assertEquals(0, savings.size());
     }
 
     @Test
     public void oneSavingForTwoCokes(){
         basket = new Basket(coke, coke);
-        List<Saving> offers = tfop.applyToBasket(basket.getItems());
-        assertEquals(1, offers.size());
+        List<Saving> savings = tfop.applyToBasket(basket.getItems());
+        assertEquals(1, savings.size());
     }
 
     @Test
@@ -76,7 +76,6 @@ public class TwoForOnePoundTest {
 
     @Test
     public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
-        assertEquals(0, basket.getOffers().size());
         tfop.removeProduct(coke.getName());
         List<Saving> savings = tfop.applyToBasket(basket.getItems());
         assertEquals(0, savings.size());

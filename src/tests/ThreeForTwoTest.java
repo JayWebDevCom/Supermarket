@@ -42,7 +42,6 @@ public class ThreeForTwoTest {
     @Test
     public void applyToBasketAddsOneSavingForThree() throws Exception {
         Basket basket = new Basket(juice, juice, juice);
-        assertEquals(0, basket.getOffers().size());
         List<Saving> savings = tft.applyToBasket(basket.getItems());
         assertEquals(1, savings.size());
         assertEquals(-1 * juice.getPrice(), savings.get(0).getSaving(), 0.001);
@@ -50,7 +49,6 @@ public class ThreeForTwoTest {
 
     @Test
     public void applyToBasketAddsOneSavingForFive() throws Exception {
-        assertEquals(0, basket.getOffers().size());
         List<Saving> savings = tft.applyToBasket(basket.getItems());
         assertEquals(1, savings.size());
         assertEquals(-1 * juice.getPrice(), savings.get(0).getSaving(), 0.001);
@@ -58,7 +56,6 @@ public class ThreeForTwoTest {
 
     @Test
     public void applyToBasketAddsTwoSavingForSix() throws Exception {
-        assertEquals(0, basket.getOffers().size());
         basket.add(juice);
         List<Saving> savings = tft.applyToBasket(basket.getItems());
         assertEquals(2, savings.size());
@@ -67,10 +64,9 @@ public class ThreeForTwoTest {
 
     @Test
     public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
-        assertEquals(0, basket.getOffers().size());
         tft.removeProduct(juice.getName());
-        tft.applyToBasket(basket.getItems());
-        assertEquals(0, basket.getOffers().size());
+        List<Saving> savings = tft.applyToBasket(basket.getItems());
+        assertEquals(0, savings.size());
     }
 
 }

@@ -33,18 +33,4 @@ public class BasketTest {
         assertEquals(4, basket.getItems().size());
     }
 
-    @Test
-    public void addSaving(){
-        Saving saving = new Saving("test product", 2.00, "test message");
-        basket.addOffer(saving);
-        assertTrue(basket.getOffers().contains(saving));
-    }
-
-    @Test
-    public void getSaving(){
-        Saving saving = new Saving("test product", 2.00, "test message");
-        basket.addOffer(saving);
-        assertEquals(1, basket.getOffers().size());
-    }
-
 }

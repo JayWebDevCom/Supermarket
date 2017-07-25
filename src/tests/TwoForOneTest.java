@@ -38,7 +38,6 @@ public class TwoForOneTest {
 
     @Test
     public void applySavingsOnBeans2() throws Exception {
-        assertEquals(0, basket.getOffers().size());
         basket.add(beans);
         List<Saving> savings = twoForOne.applyToBasket(basket.getItems());
         assertEquals(3, savings.size());
@@ -46,7 +45,6 @@ public class TwoForOneTest {
 
     @Test
     public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
-        assertEquals(0, basket.getOffers().size());
         twoForOne.removeProduct(beans.getName());
         List<Saving> savings = twoForOne.applyToBasket(basket.getItems());
         assertEquals(0, savings.size());
@@ -56,7 +54,6 @@ public class TwoForOneTest {
     public void applyToBasketCokeAndBeansTogether() throws Exception {
         basket = new Basket(coke, coke, coke, coke, beans, beans, beans, beans);
         twoForOne.addProduct(coke.getName());
-        assertEquals(0, basket.getOffers().size());
         List<Saving> savings = twoForOne.applyToBasket(basket.getItems());
         assertEquals(4, savings.size());
     }
@@ -65,7 +62,6 @@ public class TwoForOneTest {
     public void applyToBasketCokeAndBeansTogetherCorrectSavingAmout() throws Exception {
         basket = new Basket(coke, coke, coke, coke, beans, beans, beans, beans);
         twoForOne.addProduct(coke.getName());
-        assertEquals(0, basket.getOffers().size());
         List<Saving> savings = twoForOne.applyToBasket(basket.getItems());
         assertEquals(4, savings.size());
         assertEquals(-0.70, savings.get(0).getSaving(), 0.01);
