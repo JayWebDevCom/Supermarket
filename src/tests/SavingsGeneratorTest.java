@@ -4,6 +4,10 @@ import models.Basket;
 import models.Product;
 import models.Saving;
 import models.SavingsGenerator;
+import models.offers.Offer;
+import models.offers.ThreeForTwo;
+import models.offers.TwoForOne;
+import models.offers.TwoForOnePound;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,14 +17,22 @@ import static org.junit.Assert.*;
 
 public class SavingsGeneratorTest {
 
-    private Product coke; private Basket basket; private SavingsGenerator savGen; private Product beans;
+    private Product coke; private Basket basket;
+    private SavingsGenerator savGen;
+    private Product beans;
+    private Offer twoForOnePound;
+    private Offer threeForTwo;
+    private Offer  twoForOne;
 
     @Before
     public void setUp() throws Exception {
         coke = new Product("Coke", 0.70);
         beans = new Product("Beans", 0.50);
         basket = new Basket(beans, beans, beans, beans, coke, coke, coke);
-        savGen = new SavingsGenerator();
+        twoForOnePound = new TwoForOnePound("Two For £1", coke.getName());
+        threeForTwo = new ThreeForTwo("Three For Two", beans.getName());
+        twoForOne = new TwoForOne("Two For One");
+        savGen = new SavingsGenerator(threeForTwo, twoForOne, twoForOnePound);
     }
 
     @Test
