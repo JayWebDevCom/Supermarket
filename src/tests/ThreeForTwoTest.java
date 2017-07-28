@@ -60,11 +60,13 @@ public class ThreeForTwoTest {
         assertEquals(-1 * juice.getPrice(), savings.get(0).getSaving(), 0.001);
     }
 
+
     @Test
     public void applyToBasketNoSavingsWhenProductNotIncluded() throws Exception {
         tft.removeProduct(juice.getName());
         List<Saving> savings = tft.generateSavings(basket.getProducts());
         assertEquals(0, savings.size());
     }
+
 
 }
